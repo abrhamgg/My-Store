@@ -38,6 +38,7 @@ export class CartComponent implements OnInit {
   }
 
   submitOrder() {
+    const pattern = /^\d+\.?\d*$/;
     if (this.user.address.length < 3) {
       alert('invalid address')
     }
@@ -46,6 +47,9 @@ export class CartComponent implements OnInit {
     }
     else if (this.user.creditCard.length < 16) {
       alert('invalid credit card')
+    }
+    else if (pattern.test(this.user.creditCard) === false) {
+      alert('credit card should only contain numbers')
     }
     else if (this.total === 0) {
       alert('Cart is empty')
